@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+    <line>
+      <![CDATA[2017-02-24 10:17:29:afterNavigateTo: https://www.baidu.com/]]>
+    </line>
+    <line>
+      <![CDATA[2017-02-24 10:17:29:afterNavigateTo by driver: https://www.baidu.com/]]>
+    </line>
+    <line>
+      <![CDATA[2017-02-24 10:17:29:查找元素的条件是: By.id: kw]]>
+    </line>
+    <line>
+      <![CDATA[2017-02-24 10:17:29:查找元素的条件是: By.id: su]]>
+    </line>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="3071" started-at="2017-02-24T02:17:26Z" finished-at="2017-02-24T02:17:29Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="3071" started-at="2017-02-24T02:17:26Z" finished-at="2017-02-24T02:17:29Z">
+      <class name="sjc.main.ExecTest">
+        <test-method status="PASS" signature="login(java.lang.String)[pri:0, instance:sjc.main.ExecTest@6276ae34]" name="login" duration-ms="3060" started-at="2017-02-24T10:17:26Z" data-provider="search" finished-at="2017-02-24T10:17:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[2017-02-24 10:17:29:afterNavigateTo: https://www.baidu.com/]]>
+            </line>
+            <line>
+              <![CDATA[2017-02-24 10:17:29:afterNavigateTo by driver: https://www.baidu.com/]]>
+            </line>
+            <line>
+              <![CDATA[2017-02-24 10:17:29:查找元素的条件是: By.id: kw]]>
+            </line>
+            <line>
+              <![CDATA[2017-02-24 10:17:29:查找元素的条件是: By.id: su]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- login -->
+      </class> <!-- sjc.main.ExecTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
