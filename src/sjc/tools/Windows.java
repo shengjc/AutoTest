@@ -7,7 +7,7 @@ public class Windows {
 
         for(String windows : driver.getWindowHandles())
 
-             if(!windows.equals("")) {
+             if(!windows.equals("主窗口句柄")) {
 
                    driver.switchTo().window(windows);
 
@@ -15,7 +15,7 @@ public class Windows {
 
              }
 
-        driver.switchTo().window("");
+        driver.switchTo().window("主窗口句柄");
 
 	}
 }

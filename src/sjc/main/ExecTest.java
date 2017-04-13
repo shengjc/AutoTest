@@ -8,11 +8,13 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import annotation.AnnotationParse;
 import sjc.base.driverfactory.ChromeFactory;
 import sjc.base.driverfactory.DriverFactory;
 import sjc.base.driverfactory.FirefoxFactory;
 import sjc.base.listener.*;
 import sjc.base.page.IndexPage;
+
 
 @Listeners({TestListener.class,sjc.base.listener.CustomReporter.class})
 public class ExecTest {	
@@ -29,8 +31,9 @@ public class ExecTest {
 		
 		getDriver("chrome");
 		wd.get("https://www.baidu.com/");
-		IndexPage indexpage = new IndexPage(wd,"百度一下，你就知道");
-		indexpage.search(content);
+		IndexPage indexpage = new IndexPage(wd,"百度一下，你就知道");		
+		indexpage.search(content);		
+		
 	}
 	
 	private void getDriver(String type) {
@@ -55,8 +58,9 @@ public class ExecTest {
 	}
 	
 	@AfterTest
-	public void end() {
+	public void end() {		
 		wd.close();
+		AnnotationParse.TestCaseParse();
 	}
 	
 }

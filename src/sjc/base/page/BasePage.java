@@ -7,16 +7,20 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage {
-	public WebDriver dr;	
-	
+import annotation.AnnotationParse;
+import annotation.AnnotationProperty;
 
-	//超时时间
+public class BasePage {
+  public WebDriver dr;
+
+    //超时时间
     private final int TIMEOUT = 10;    
 
 	public BasePage(WebDriver dr) {
         this.dr = dr;
         PageFactory.initElements(new AjaxElementLocatorFactory(dr, TIMEOUT) , this);
+        AnnotationProperty ap = AnnotationProperty.getInstance();
+        ap.setAnnotationClass(this.getClass());        
     }
     
 	public BasePage(WebDriver dr, final String title) {
@@ -37,7 +41,8 @@ public class BasePage {
         }
         
         PageFactory.initElements(new AjaxElementLocatorFactory(dr, TIMEOUT) , this);
-        
+        AnnotationProperty ap = AnnotationProperty.getInstance();
+        ap.setAnnotationClass(this.getClass());
     }
     
     //可以通过组合方式加入网页header和footer的公共框架部分
