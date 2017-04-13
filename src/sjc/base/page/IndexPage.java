@@ -32,7 +32,7 @@ public class IndexPage extends BasePage {
 	}
 	
 	
-	@TestCase(caseId="1",SuitId="1",description="²âÊÔÓÃÀı1")
+	@TestCase(caseId="22",SuitId="1",description="²âÊÔÓÃÀı1")
 	public void search(String content) {
 		keyword.sendKeys(content);
 		searchbt.click();

@@ -1,10 +1,8 @@
 package sjc.main;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -12,8 +10,11 @@ import annotation.AnnotationParse;
 import sjc.base.driverfactory.ChromeFactory;
 import sjc.base.driverfactory.DriverFactory;
 import sjc.base.driverfactory.FirefoxFactory;
-import sjc.base.listener.*;
 import sjc.base.page.IndexPage;
+import sjc.base.listener.TestListener;
+
+
+
 
 
 @Listeners({TestListener.class,sjc.base.listener.CustomReporter.class})
@@ -25,11 +26,17 @@ public class ExecTest {
 //    }
 	
 	WebDriver wd = null;
-	@Test(testName = "baidu",dataProviderClass = TestDataProvide.class,dataProvider = "search")
-//	@Test(testName = "baidu",dataProvider = "search")
-	public void login(String content) {
+	
+	@BeforeTest	
+	public void init() {
 		
 		getDriver("chrome");
+	}
+	
+	@Test(testName = "baidu",dataProviderClass = TestDataProvide.class,dataProvider = "search")
+//	@Test(testName = "baidu",dataProvider = "search")
+	public void login(String content) {		
+		
 		wd.get("https://www.baidu.com/");
 		IndexPage indexpage = new IndexPage(wd,"百度一下，你就知道");		
 		indexpage.search(content);		

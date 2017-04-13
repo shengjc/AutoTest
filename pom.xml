@@ -5,6 +5,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>AutoTestFrame</name>    
     
+ <!--    
+  <scm>  
+	  <connection>scm:svn:https://shengjc/svn/TestRep/trunk/</connection>  
+	  <developerConnection>scm:svn:https://shengjc/svn/TestRep/trunk</developerConnection>  
+  </scm>
+  --> 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <allure.version>1.4.16</allure.version>
@@ -13,7 +19,9 @@
   
   <dependencies>
   
+  <!--
    <dependency>
+    
         <groupId>ru.yandex.qatools.allure</groupId>
         <artifactId>allure-testng-adaptor</artifactId>
         <version>${allure.version}</version>
@@ -24,6 +32,7 @@
             </exclusion>
         </exclusions>
     </dependency>
+    -->
         
   	<dependency>
   		<groupId>org.testng</groupId>
@@ -47,8 +56,20 @@
   		<groupId>org.seleniumhq.selenium</groupId>
   		<artifactId>selenium-support</artifactId>
   		<version>[2.35.0,)</version>
-  	</dependency>  	
-  </dependencies>
+  	</dependency>
+  	<dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.2.8</version>
+    </dependency>
+    
+    <dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.41</version>
+	</dependency>
+  	  	
+    </dependencies>
   
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -58,6 +79,14 @@
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>
+      </resource>
+      
+      <resource>
+          <directory>src/main/java</directory>
+          <includes>
+              <include>**/*.xml</include>
+          </includes>
+          <filtering>true</filtering>
       </resource>
     </resources>
     <plugins>
@@ -69,6 +98,45 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      
+      <!-- 
+      <plugin>  
+		<groupId>org.apache.maven.plugins</groupId>  
+		<artifactId>maven-surefire-plugin</artifactId>  
+		<version>2.12</version>  
+		<configuration>  
+		  <suiteXmlFiles>  
+		    <suiteXmlFile>config/testng.xml</suiteXmlFile>  
+		  </suiteXmlFiles>  
+		</configuration>  
+		</plugin>		 
+		 
+		<plugin>  
+		  <groupId>org.apache.maven.plugins</groupId>  
+		  <artifactId>maven-release-plugin</artifactId>  
+		  <version>2.0-beta-7</version>  
+		  <configuration>  
+		    <tagBase>https://shengjc/svn/TestRep/tags/</tagBase>  
+		  </configuration>  
+		</plugin>
+		-->
     </plugins>
+    
+    
   </build>
+  <!-- 
+  <distributionManagement>
+		<repository>
+			<id>user-release</id>
+			<name>User Project Release</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>user-snapshots</id>
+			<name>User Project SNAPSHOTS</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	 -->
 </project>
