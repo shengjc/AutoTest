@@ -5,21 +5,39 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class Tester {
+import net.sf.cglib.transform.MethodFilterTransformer;
 
-	public static void main(String[] args) {
-		SaxService.readXML("src\\sjc\\tools\\interfacetoeasymock\\interfaceTemplate.xml");		
-		InterfacceSax myhandler = new InterfacceSax();
-		HashMap<String,InterfaceBean> data = (HashMap<String,InterfaceBean>)myhandler.getInfo();
-		data.get("interfance");
-		System.out.println(data.get("interfance").toString());
-		
-//		Iterator iiIterator = data.entrySet().iterator();
+import java.util.Set;
+
+public class Tester {
+	
+	
+	public static void main(String[] args) throws Exception {
+		GenerateMock myMock = new GenerateMock("src\\sjc\\tools\\interfacetoeasymock\\", "src\\sjc\\tools\\interfacetoeasymock\\interfaceTemplate.xml");
+		myMock.generateInterface();
+		myMock.generateEasyMock();
+//		InterfaceBean data = SaxService.readXML("src\\sjc\\tools\\interfacetoeasymock\\interfaceTemplate.xml");
+//		HashMap<String, MethodBean> mMap = (HashMap<String, MethodBean>) data.getMethods();
 //		
-//		while(iiIterator.hasNext()) {
-//			Map.Entry entry = (Map.Entry) iiIterator.next();
-//			System.out.println(entry.getValue());
-//		}
+//		Iterator<String> iterator_m = mMap.keySet().iterator();
+//		while(iterator_m.hasNext()) {
+//			String myKey = iterator_m.next();
+//			MethodBean method = mMap.get(myKey);
+////			System.out.print("返回值类型："+method.getReturnType());
+//			System.out.println("返回值类型："+method.getReturnType()+" 方法名："+method.getMethodName());
+////			System.out.println("方法说明："+method.getMethodDetails());
+//			
+//			HashMap<String, ParamBean> pMap = (HashMap<String, ParamBean>) method.getParams();
+//			Iterator<String> iterator_p = pMap.keySet().iterator();			
+//			while(iterator_p.hasNext()) {
+//				String key = iterator_p.next();
+//				ParamBean param = pMap.get(key);
+//				System.out.println("参数类型："+param.getParamType()+" 参数名"+param.getParamName());
+//				
+//			}
+//			System.out.println();
+		}
+//		
 	}
 
-}
+

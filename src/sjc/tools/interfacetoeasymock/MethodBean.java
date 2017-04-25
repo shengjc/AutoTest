@@ -1,18 +1,19 @@
 package sjc.tools.interfacetoeasymock;
 
+import java.util.Map;
 import java.util.Set;
 
 public class MethodBean {
 	private String methodName;
 	private String returnType;
-	private Set<ParamBean> params;
+	private Map<String,ParamBean> params;
 	private String methodDetails;
 	private boolean Mflag = true;
 	
 	public MethodBean() {		
 	}
 
-	public MethodBean(String methodName, String returnType, Set<ParamBean> params, String methodDetails,
+	public MethodBean(String methodName, String returnType, Map<String,ParamBean> params, String methodDetails,
 			boolean mflag) {
 		super();
 		this.methodName = methodName;
@@ -38,11 +39,12 @@ public class MethodBean {
 		this.returnType = returnType;
 	}
 
-	public Set<ParamBean> getParams() {
+
+	public Map<String, ParamBean> getParams() {
 		return params;
 	}
 
-	public void setParams(Set<ParamBean> params) {
+	public void setParams(Map<String, ParamBean> params) {
 		this.params = params;
 	}
 
@@ -61,4 +63,6 @@ public class MethodBean {
 	public void setMflag(boolean mflag) {
 		Mflag = mflag;
 	}
+	
+	
 }

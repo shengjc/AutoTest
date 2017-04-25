@@ -9,7 +9,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class InterfacceSax extends DefaultHandler {
 	private InterfaceBean interfaceBean;
-	private Map<String,InterfaceBean> interfaces;
+//	private Map<String,InterfaceBean> interfaces;
 //	private String interfaceName;
 	private MethodBean method;
 	private Map<String,MethodBean> methods;
@@ -17,6 +17,7 @@ public class InterfacceSax extends DefaultHandler {
 	private Map<String, ParamBean> params;
 	private ParamBean param;
 	
+//	private final String TAG_Interfaces = "Interfaces";
 	private final String TAG_Interface = "Interface";
 	private final String TAG_IFlag = "Iflag";
 	private final String TAG_InterfaceName = "InterfaceName";
@@ -33,6 +34,8 @@ public class InterfacceSax extends DefaultHandler {
 	private final String TAG_ParamName = "ParamName";
 	private final String TAG_ParamType = "ParamType";
 	
+	private final boolean TAG_OUT = false;
+	
 	private String sb;
 	private String currentTap = null;
 	private String preTap = null;
@@ -43,6 +46,8 @@ public class InterfacceSax extends DefaultHandler {
 	private boolean methodFlag = true;
 	private boolean paramFlag = true;
 	
+	int count=0;
+	
 	
 
 	public InterfacceSax() {
@@ -52,9 +57,8 @@ public class InterfacceSax extends DefaultHandler {
 	@Override
 	public void startDocument() throws SAXException {
 		super.startDocument();
-		interfaces = new HashMap<String,InterfaceBean>();
-		methods = new HashMap<String,MethodBean>();
-		params = new HashMap<String,ParamBean>();
+//		interfaces = new HashMap<String,InterfaceBean>();
+		methods = new HashMap<String,MethodBean>();		
 	}
 
 	@Override
@@ -66,10 +70,13 @@ public class InterfacceSax extends DefaultHandler {
 			interfaceBean = new InterfaceBean();
 		}
 		if(qName.equals(TAG_Method)) {
-			method = new MethodBean();
+			method = new MethodBean();			
+		}
+		if(qName.equals(TAG_Param)) {
+			param = new ParamBean();			
 		}
 		if(qName.equals(TAG_Params)) {
-			param = new ParamBean();
+			params = new HashMap<String,ParamBean>();
 		}
 		currentTap = qName;
 		
@@ -92,22 +99,32 @@ public class InterfacceSax extends DefaultHandler {
 				if(interfaceFlag) {
 					interfaceBean.setInterfaceName(attributes.getValue(TAG_InterfaceName));
 					currentInterfaceName = attributes.getValue(TAG_InterfaceName);
+					if(TAG_OUT)
+						System.out.println(interfaceBean.getInterfaceName());
 				}				
 				break;
 			case TAG_Method:
 				if(interfaceFlag&&methodFlag) {
 					method.setMethodName(attributes.getValue(TAG_MethodName));
+					method.setReturnType(attributes.getValue(TAG_ReturnType));
 					currentMethodName = attributes.getValue(TAG_MethodName);
+					if(TAG_OUT)
+						System.out.println(method.getMethodName());
 				}				
-				break;
+				break;				
 			case TAG_Param:
-				if(interfaceFlag&&methodFlag&&paramFlag) {
-					if(attributes.equals(TAG_ParamType)) {
+				if(interfaceFlag&&methodFlag&&paramFlag) {	
+					
+					if(attributes.getQName(0).equals(TAG_ParamType)) {
 						param.setParamType(attributes.getValue(TAG_ParamType));
+						if(TAG_OUT)
+							System.out.println(param.getParamType());
 					}
-					if(attributes.equals(TAG_ParamName)) {
+					if(attributes.getQName(1).equals(TAG_ParamName)) {
 						param.setParamName(attributes.getValue(TAG_ParamName));
 						currentParamName = attributes.getValue(TAG_ParamName);
+						if(TAG_OUT)
+							System.out.println(param.getParamName());
 					}
 				}				
 				break;
@@ -130,12 +147,18 @@ public class InterfacceSax extends DefaultHandler {
 			switch (currentTap) {
 			case TAG_ReturnType:
 				method.setReturnType(sb);
+				if(TAG_OUT)
+					System.out.println(method.getReturnType());
 				break;
 			case TAG_MethodDetails:
 				method.setMethodDetails(sb);
+				if(TAG_OUT)
+					System.out.println(method.getMethodDetails());
 				break;
 			case TAG_InterfaceDetails:
 				interfaceBean.setInterfaceDetails(sb);
+				if(TAG_OUT)
+					System.out.println(interfaceBean.getInterfaceDetails());
 				break;
 			default:
 				break;
@@ -153,15 +176,22 @@ public class InterfacceSax extends DefaultHandler {
 //		String value = sb;
 		switch (qName) {
 		case TAG_Param:
-			params.put(currentParamName, param);
-			currentParamName = null;
+			params.put(currentInterfaceName+currentMethodName+currentParamName, param);
+			currentParamName = null;			
 			break;
 		case TAG_Method:
-			methods.put(currentMethodName, method);
-			currentMethodName = null;
-		case TAG_Interface:
-			interfaces.put(currentInterfaceName, interfaceBean);
-			currentInterfaceName = null;
+			methods.put(currentInterfaceName+currentMethodName, method);
+			currentMethodName = null;			
+			break;
+//		case TAG_Interface:
+//			interfaces.put(currentInterfaceName+currentMethodName+currentParamName, interfaceBean);
+//			currentInterfaceName = null;
+		case TAG_Params:
+			method.setParams(params);			
+			break;
+		case TAG_Methods:
+			interfaceBean.setMethods(methods);			
+			break;		
 		default:
 			break;
 		}
@@ -174,8 +204,13 @@ public class InterfacceSax extends DefaultHandler {
 		
 		
 	}
+
+	public InterfaceBean getInterfaceBean() {
+//		System.out.println(interfaceBean.getInterfaceName());
+		return interfaceBean;
+	}	
 	
-	public Map<String,InterfaceBean> getInfo(){
-		return interfaces;
-	}
+//	public Map<String,InterfaceBean> getInfo(){
+//		return interfaces;
+//	}
 }

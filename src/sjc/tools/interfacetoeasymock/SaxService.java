@@ -11,14 +11,14 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 
 public class SaxService {
-	public static Map<String,InterfaceBean> readXML(String uri){
+	public static InterfaceBean readXML(String uri){
 		SAXParserFactory parserFactory=SAXParserFactory.newInstance();
 		SAXParser parser;
 		try {
 			parser = parserFactory.newSAXParser();
 			InterfacceSax myhandler=new InterfacceSax();			
 			parser.parse(uri, myhandler);
-			return myhandler.getInfo();
+			return myhandler.getInterfaceBean();
 			 
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block

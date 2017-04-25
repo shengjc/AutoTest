@@ -1,17 +1,18 @@
 package sjc.tools.interfacetoeasymock;
 
+import java.util.Map;
 import java.util.Set;
 
 public class InterfaceBean {
 	private String interfaceName;
-	private Set<MethodBean> methods;	
+	private Map<String,MethodBean> methods;	
 	private String interfaceDetails;
 	private boolean Ifalg = true;
 	
 	public InterfaceBean() {				
 	}
 
-	public InterfaceBean(String interfaceName, Set<MethodBean> methods, String interfaceDetails, boolean ifalg) {
+	public InterfaceBean(String interfaceName, Map<String,MethodBean> methods, String interfaceDetails, boolean ifalg) {
 		super();
 		this.interfaceName = interfaceName;
 		this.methods = methods;
@@ -27,11 +28,11 @@ public class InterfaceBean {
 		this.interfaceName = interfaceName;
 	}
 
-	public Set<MethodBean> getMethods() {
+	public Map<String,MethodBean> getMethods() {
 		return methods;
 	}
 
-	public void setMethods(Set<MethodBean> methods) {
+	public void setMethods(Map<String,MethodBean> methods) {
 		this.methods = methods;
 	}
 

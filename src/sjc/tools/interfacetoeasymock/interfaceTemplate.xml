@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Interface Iflag = "true" InterfaceName = "interfance">		
-	<Methods>
-		<Method Mflag = "true" MethodName = "method1">			
-			<ReturnType>String</ReturnType>
-			<Params Pflag = "false"></Params>
+
+<Interface Iflag = "true" InterfaceName = "Interfacename">		
+	<Methods>	
+	 
+		<Method Mflag = "true" MethodName = "method1" ReturnType = "String">			
+			<Params Pflag = "true"></Params>
+				<Param ParamType = "int" ParamName = "sum"></Param>
 			<MethodDetails>method1方法说明</MethodDetails>
-		</Method>
-		<Method Mflag = "true" MethodName = "add">
+		</Method>		 
+		 
+		<Method Mflag = "true" MethodName = "add" ReturnType="void">			
 			<Params Pflag = "true">
 				<Param ParamType = "int" ParamName = "count"></Param>
 				<Param ParamType = "String" ParamName = "name"></Param>					
-			</Params>			
-			<ReturnType>void</ReturnType>		
+			</Params>				
 			<MethodDetails>add方法说明</MethodDetails>
 		</Method>
+		
 	</Methods>	
 	<InterfaceDetails>接口说明</InterfaceDetails>
 </Interface>
