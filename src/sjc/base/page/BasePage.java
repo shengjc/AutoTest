@@ -20,7 +20,7 @@ public class BasePage {
         this.dr = dr;
         PageFactory.initElements(new AjaxElementLocatorFactory(dr, TIMEOUT) , this);
         AnnotationProperty ap = AnnotationProperty.getInstance();
-        ap.setAnnotationClass(this.getClass());        
+        ap.setAnnotationClass(this.getClass());        //TestCase注解用，将调用BasePage的页面对象的类设置到AnnotationProperty对象中，在对应的注解解析类AnnotationParse中获取用
     }
     
 	public BasePage(WebDriver dr, final String title) {
