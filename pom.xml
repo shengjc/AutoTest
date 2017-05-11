@@ -21,8 +21,7 @@
   <dependencies>
   
   <!--
-   <dependency>
-    
+   <dependency>    
         <groupId>ru.yandex.qatools.allure</groupId>
         <artifactId>allure-testng-adaptor</artifactId>
         <version>${allure.version}</version>
@@ -112,6 +111,24 @@
 	    <artifactId>joda-time</artifactId>
 	    <version>2.9.7</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.41</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpclient</artifactId>
+	    <version>4.5.3</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
+	<dependency>
+	    <groupId>org.apache.activemq</groupId>
+	    <artifactId>activemq-all</artifactId>
+	    <version>5.9.1</version>
+	</dependency>	
 	
   	  	
     </dependencies>
