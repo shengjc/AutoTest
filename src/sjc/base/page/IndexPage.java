@@ -7,7 +7,10 @@ import org.openqa.selenium.support.FindBy;
 
 import annotation.TestCase;
 
-
+/**
+ * @author shengjc
+ * Ê×Ò³
+ */
 public class IndexPage extends BasePage {	
 	
 	

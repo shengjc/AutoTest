@@ -22,45 +22,52 @@ import javax.tools.JavaCompiler.CompilationTask;
 import org.easymock.EasyMock;
 import org.junit.Assert;
 
-
+/**
+ * @author shengjc
+ * 使用解析接口描述文档xml后的结果，生成EasyMock的java文件
+ */
 public class GenerateMock implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	
-	private String packagePath = null;
-	private InterfaceBean data;
+	private String packagePath = null;	//包路径
+	private InterfaceBean data;		//解析后的xml信息
 	private String MyDAO = "myDAO";
-	private ArrayList<String> methodArray = null;
-	private ArrayList<String> mehtodReturnType = null;
+	private ArrayList<String> methodArray = null;	//所有方法
+	private ArrayList<String> mehtodReturnType = null;	//所有返回值类型
 	//"src\\sjc\\tools\\interfacetoeasymock\\", "src\\sjc\\tools\\interfacetoeasymock\\interfaceTemplate.xml"
+	//构造方法，设置包路径以及xml存放位置，并使用SaxService的readXML方法开始解析XML
 	public GenerateMock(String packagePath,String XMLPath) {
 		super();
 		this.packagePath = packagePath;
 		data = SaxService.readXML(XMLPath);	
 	}
 
+	//生成接口文件
 	public void generateInterface() throws Exception
     {
-		methodArray = new ArrayList<String>();
-		mehtodReturnType = new ArrayList<String>();
-		StringBuilder sb = new StringBuilder(1024);
+		methodArray = new ArrayList<String>();	//初始化methodArray为ArrayList
+		mehtodReturnType = new ArrayList<String>();		//初始化mehtodReturnType为ArrayList
+		StringBuilder sb = new StringBuilder(1024);		//存储要生成的java文件内容
 		
-		HashMap<String, MethodBean> mMap = (HashMap<String, MethodBean>) data.getMethods();		
-		Iterator<String> iterator_m = mMap.keySet().iterator();
+		HashMap<String, MethodBean> mMap = (HashMap<String, MethodBean>) data.getMethods();		//获得解析后的所有方法	
+		Iterator<String> iterator_m = mMap.keySet().iterator();		//得到迭代器
 		
 		sb.append("package packagePath;\n\n");
         sb.append("public interface "+data.getInterfaceName() + "\n");
         sb.append("{\n");
         
+        //开始遍历所有方法
 		while(iterator_m.hasNext()) {
 			
-			String myKey = iterator_m.next();
-			MethodBean method = mMap.get(myKey);
-			mehtodReturnType.add(method.getReturnType());
-			methodArray.add(method.getMethodName());			
+			String myKey = iterator_m.next();	//得到key
+			MethodBean method = mMap.get(myKey);	//通过key得到method信息
+			mehtodReturnType.add(method.getReturnType());	//将返回值添加到mehtodReturnType数组
+			methodArray.add(method.getMethodName());			//将方法名添加到methodArray数组
 			sb.append("\tpublic "+method.getReturnType()+" "+method.getMethodName()+"(");	//"\tpublic $Proxy1(InvocationHandler h)\n"
 			
-			HashMap<String, ParamBean> pMap = (HashMap<String, ParamBean>) method.getParams();
-			Iterator<String> iterator_p = pMap.keySet().iterator();			
+			HashMap<String, ParamBean> pMap = (HashMap<String, ParamBean>) method.getParams();	//获取所有参数信息
+			Iterator<String> iterator_p = pMap.keySet().iterator();			//迭代器
+			//开始遍历当前方法的所有参数
 			while(iterator_p.hasNext()) {
 				String key = iterator_p.next();
 				ParamBean param = pMap.get(key);
@@ -108,6 +115,7 @@ public class GenerateMock implements Serializable  {
 //        classFile.delete();
     }
 	
+	//生成EasyMock文件
 	public void generateEasyMock() throws IOException {
 		StringBuilder sb = new StringBuilder(1024);
 		sb.append("package packagePath;\n\n");
@@ -127,7 +135,7 @@ public class GenerateMock implements Serializable  {
 		sb.append("}"+"\n\t");		
 		
 		
-		/** 生成一段Java代码 */
+		/** 生成Java代码 */
         String fileDir = System.getProperty("user.dir");
         String fileName = fileDir + "\\"+packagePath+data.getInterfaceName()+"Mock.java";
         File javaFile = new File(fileName);

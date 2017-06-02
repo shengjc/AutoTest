@@ -13,20 +13,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
 import sjc.common.Log;
-
+/**
+ * @author shengjc
+ * sjc.base.driverfactory.chromeBrowserDriver/FirefoxBrowserDriver 中WebDriverEventDriver的监听类，通过实现WebDriverEventListener接口
+ */
 public class MyWebDriverListener implements WebDriverEventListener {
 
+	//为该监听类使用log4j功能
 	private Log log = new Log(MyWebDriverListener.class);
 	
 	@Override
 	public void beforeNavigateTo(String url, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 跳转页面前
 		
 	}
 
 	@Override
 	public void afterNavigateTo(String url, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 跳转页面后
 		log.debug("afterNavigateTo: "+url);
 		log.debug("afterNavigateTo by driver: "+driver.getCurrentUrl());
 		System.out.println("afterNavigateTo: "+url);
@@ -36,43 +40,43 @@ public class MyWebDriverListener implements WebDriverEventListener {
 
 	@Override
 	public void beforeNavigateBack(WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 回退页面前
 
 	}
 
 	@Override
 	public void afterNavigateBack(WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 回退页面后
 
 	}
 
 	@Override
 	public void beforeNavigateForward(WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 使用浏览器前进按钮前
 
 	}
 
 	@Override
 	public void afterNavigateForward(WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 使用浏览器前进按钮后
 
 	}
 
 	@Override
 	public void beforeNavigateRefresh(WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 使用浏览器刷新按钮前
 
 	}
 
 	@Override
 	public void afterNavigateRefresh(WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 使用浏览器刷新按钮后
 
 	}
 
 	@Override
 	public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 定位元素前
 		log.debug("查找元素的条件是: "+ by.toString());
 		System.out.println("查找元素的条件是: "+ by.toString());
 
@@ -80,49 +84,49 @@ public class MyWebDriverListener implements WebDriverEventListener {
 
 	@Override
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 定位元素后
 	}
 
 	@Override
 	public void beforeClickOn(WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 点击元素前
 		System.out.println("单机页面元素的属性: "+element.getAttribute("value"));
 
 	}
 
 	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 点击元素后
 
 	}
 
 	@Override
 	public void beforeChangeValueOf(WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 改变元素值前
 
 	}
 
 	@Override
 	public void afterChangeValueOf(WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 改变元素值之后
 
 	}
 
 	@Override
 	public void beforeScript(String script, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 执行脚本前
 
 	}
 
 	@Override
 	public void afterScript(String script, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 执行脚本后
 
 	}
 
 	@Override
 	public void onException(Throwable throwable, WebDriver driver) {
-		// TODO Auto-generated method stub
+		// 出现异常时
 		SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
         String dateString = format.format(new Date());
 

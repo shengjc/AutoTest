@@ -7,24 +7,25 @@ import java.io.Serializable;
 
 /**
  * @author Administrator
- *
+ * mybatis的封装
  */
 public class CaseStatisticsBean implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private String caseId = null;
-	private String description = null;
-	private String suitId = null;
+	private static final long serialVersionUID = 1L;	//持久化版本号
+	private String caseId = null;		//测试用例ID
+	private String description = null;		//描述
+	private String suitId = null;		//用例集ID
 	
 	public CaseStatisticsBean() {
 		super();
 	}
-
+	
+	//用例信息，只持久化caseid和description
 	public CaseStatisticsBean(String caseId, String description) {
 		super();
 		this.caseId = caseId;
 		this.description = description;
 	}
-
+	//用例信息，持久化caseid和description、suitid
 	public CaseStatisticsBean(String caseId, String description, String suitId) {
 		super();
 		this.caseId = caseId;
@@ -56,6 +57,7 @@ public class CaseStatisticsBean implements Serializable {
 		this.suitId = suitId;
 	}
 
+	//输出用例信息
 	@Override
 	public String toString() {
 		return "CaseStatisticsBean [description=" + description + ", suitId=" + suitId + "]";

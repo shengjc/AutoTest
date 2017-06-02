@@ -1,7 +1,10 @@
 package sjc.tools;
 
 import org.openqa.selenium.WebDriver;
-
+/**
+ * @author shengjc
+ * 选择windows句柄的一些方法
+ */
 public class Windows {
 	public void closeOtherWindows(WebDriver driver) {
 

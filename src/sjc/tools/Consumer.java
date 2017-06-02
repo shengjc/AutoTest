@@ -12,7 +12,10 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-
+/**
+ * @author shengjc
+ * ActiveMQ的订阅者
+ */
 public class Consumer {
     public static final String url = "tcp://172.16.0.17:61616";// 缺省端口，如果要改，可在apache-activemq\conf中的activemq.xml中更改端口号
     ConnectionFactory factory;

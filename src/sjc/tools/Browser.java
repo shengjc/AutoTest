@@ -11,7 +11,10 @@ import java.util.Set;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+/**
+ * @author shengjc
+ * 浏览器常用的一些操作封装
+ */
 public class Browser {
 	private WebDriver driver = null;
 	public final static boolean DEBUG = true;//调试用

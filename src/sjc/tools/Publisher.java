@@ -15,7 +15,10 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-
+/**
+ * @author shengjc
+ * ActiveMQ的发布者
+ */
 public class Publisher {
     public static final String url = "tcp://localhost:61616";// 缺省端口，如果要改，可在apache-activemq-5.13.3\conf中的activemq.xml中更改端口号
     ConnectionFactory factory;	// 连接工厂

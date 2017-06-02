@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 /**
  * @author Administrator
- *
+ * mybatis的初始化类
  */
 public class DBTools {
 	public static SqlSessionFactory sessionFactory;

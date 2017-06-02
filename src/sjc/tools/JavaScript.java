@@ -3,7 +3,10 @@ package sjc.tools;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+/**
+ * @author shengjc
+ * JavaScript脚本的一些封装
+ */
 public class JavaScript {
 	//对input执行输入,直接设置value属性， 此方法主要应对输入框自动补全以及readonly属性的element，sendkeys不稳定
 	private String INPUT = "arguments[0].value=";

@@ -6,7 +6,10 @@ import org.testng.Reporter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * @author shengjc
+ * log4jµÄ·â×°
+ */
 public class Log {
 	
 	private Logger logger;

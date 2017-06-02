@@ -1,5 +1,8 @@
 package sjc.base.driverfactory;
-
+/**
+ * @author shengjc
+ * firefoxdriver的工厂类
+ */
 public class FirefoxFactory implements DriverFactory {
 
 	@Override

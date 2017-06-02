@@ -2,12 +2,15 @@ package sjc.tools.interfacetoeasymock;
 
 import java.util.Map;
 import java.util.Set;
-
+/**
+ * @author shengjc
+ * 存储接口信息的类
+ */
 public class InterfaceBean {
-	private String interfaceName;
-	private Map<String,MethodBean> methods;	
-	private String interfaceDetails;
-	private boolean Ifalg = true;
+	private String interfaceName;	//接口名称，xml中的InterfaceName
+	private Map<String,MethodBean> methods;		//所有方法，xml中的Method
+	private String interfaceDetails;	//接口描述，xml中的InterfaceDetails
+	private boolean Ifalg = true;	//接口是否启用，xml中的Iflag
 	
 	public InterfaceBean() {				
 	}

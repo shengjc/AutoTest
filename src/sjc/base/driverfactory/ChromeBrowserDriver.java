@@ -9,7 +9,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import sjc.base.listener.MyWebDriverListener;
-
+/**
+ * @author shengjc
+ * chrome的driver创建类
+ */
 public class ChromeBrowserDriver implements Driver {
 
 	private WebDriver chromedriver = null;
@@ -19,24 +22,24 @@ public class ChromeBrowserDriver implements Driver {
 	
 	public ChromeBrowserDriver(String path) {
 		init(path);
-		// TODO Auto-generated constructor stub
+		// 调用init方法设置chrome的启动路径
 	}
 
 	@Override
 	public void init(String path) {
-		// TODO Auto-generated method stub
+		// 设置chrome的启动路径
 		System.setProperty("webdriver.chrome.driver", path);		
-		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-		capabilities.setCapability("chrome.switches", Arrays.asList("--start-maximized"));		
+		DesiredCapabilities capabilities = DesiredCapabilities.chrome();	//用于设置浏览器的预期能力
+		capabilities.setCapability("chrome.switches", Arrays.asList("--start-maximized"));		//启动浏览器时最大化	
 		
 	}
 
 	@Override
 	public WebDriver getDriver() {
-		// TODO Auto-generated method stub
+		// 如果driver为空就创建driver
 		if(eventdriver == null || chromedriver == null) {
 			chromedriver = new ChromeDriver();
-			eventdriver = new EventFiringWebDriver(chromedriver);
+			eventdriver = new EventFiringWebDriver(chromedriver);	//将chromedriver转换为EventFiringWebDriver
 			
 			//为eventdriver添加监听类MyWebDriverListener
 			eventdriver.register(new MyWebDriverListener());

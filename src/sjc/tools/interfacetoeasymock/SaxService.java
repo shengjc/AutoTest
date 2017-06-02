@@ -9,14 +9,17 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
-
+/**
+ * @author shengjc
+ * SAX xml解析初始化
+ */
 public class SaxService {
 	public static InterfaceBean readXML(String uri){
 		SAXParserFactory parserFactory=SAXParserFactory.newInstance();
 		SAXParser parser;
 		try {
 			parser = parserFactory.newSAXParser();
-			InterfacceSax myhandler=new InterfacceSax();			
+			InterfacceSax myhandler=new InterfacceSax();	//使用InterfacceSax进行解析			
 			parser.parse(uri, myhandler);
 			return myhandler.getInterfaceBean();
 			 

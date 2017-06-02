@@ -6,11 +6,11 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 /**
- * 消息监听
- * @author xing
- *
+ * ActiveMQ的监听类消息监听
+ * @author shengjc
+ * 目前未使用，consumer类中使用的匿名类的方式设置了监听类
  */
-public class Listener implements MessageListener{
+public class ListenerMQ implements MessageListener{
 
 	@Override
 	public void onMessage(Message message) {

@@ -14,13 +14,17 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import sjc.tools.DateTime;
-
+/**
+ * @author shengjc
+ * 断言的封装
+ */
 public class Assertion {
-	public static boolean flag = true;
-	public static List<Error> errors = new ArrayList<Error>();	
-	private static DateTime dt = new DateTime();
-	private static Log log = new Log();
+	public static boolean flag = true;		//断言结果，如果失败则为false，否则为true
+	public static List<Error> errors = new ArrayList<Error>();		//存储错误信息
+	private static DateTime dt = new DateTime();		//时间格式
+	private static Log log = new Log();		//日志类
 	
+	//两个对象的比较
 	public static void verifyEquals(Object actual,Object expected) {
 		try {
 			Assert.assertEquals(actual, expected);
@@ -32,6 +36,7 @@ public class Assertion {
 		}
 	}
 	
+	//
 	public static void verifyEquals(Object actual,Object expected,String message ) {
 		try {
 			Assert.assertEquals(actual, expected,message);
@@ -42,6 +47,7 @@ public class Assertion {
 		}
 	}
 	
+	//断言，如果result为true，则结果相同断言为真，如果result为false，则结果不同断言为真
 	public static void verifyEquals(Object actual,Object expected,boolean result ) {
 		try {
 			if(result) {

@@ -8,38 +8,46 @@ import org.testng.TestListenerAdapter;
 
 import sjc.common.Assertion;
 
-
+/**
+ * @author shengjc
+ * testNG测试监听类，通过接口TestListenerAdapter实现
+ */
 public class TestListener extends TestListenerAdapter {
+	//测试开始执行
 	@Override
 	public void onTestStart(ITestResult result) {
 		Assertion.flag = true;
 		Assertion.errors.clear();
 	}
 	
+	//测试执行失败
 	@Override
 	public void onTestFailure(ITestResult tr) {
 		this.handleAssertion(tr);
 	}
 	
+	//测试被跳过
 	@Override
 	public void onTestSkipped(ITestResult tr) {
 		this.handleAssertion(tr);
 	}
 	
+	//测试执行成功
 	@Override
 	public void onTestSuccess(ITestResult tr) {
 		this.handleAssertion(tr);
 	}   
 	
-	private int index = 0;
+	private int index = 0;		//
 	private void handleAssertion(ITestResult tr) {
+		//如果断言失败则获取测试结果的异常
 		if(!Assertion.flag){
             Throwable throwable = tr.getThrowable();           
             if(throwable==null){
                 throwable = new Throwable();
             }
-            StackTraceElement[] traces = throwable.getStackTrace();
-            StackTraceElement[] alltrace = new StackTraceElement[0];           
+            StackTraceElement[] traces = throwable.getStackTrace();		//获得异常方法的调用栈
+            StackTraceElement[] alltrace = new StackTraceElement[0];    //获取栈中的第一个数据       
             for (Error e : Assertion.errors) {
                 StackTraceElement[] errorTraces = e.getStackTrace();
                 StackTraceElement[] et = this.getKeyStackTrace(tr, errorTraces);

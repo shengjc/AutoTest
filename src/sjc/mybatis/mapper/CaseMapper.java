@@ -9,7 +9,7 @@ import sjc.mybatis.beans.CaseStatisticsBean;
 
 /**
  * @author Administrator
- *
+ * mybatis的映射map
  */
 public interface CaseMapper {
 	/*插入数据
